@@ -2,12 +2,9 @@
 
 ## Project Description
 
-This project is a Spring Boot REST API that allows users to manage tasks. Users can create, read, update, and delete tasks (CRUD operations). The API also includes input validation to ensure that all data entered meets requirements such as title length and required fields.
-
-This project demonstrates how to build a structured backend using controllers, services, and models in Spring Boot.
+This project is a Spring Boot REST API that allows users to manage tasks. Users can create, read, update, and delete tasks (CRUD operations). The API includes input validation to ensure correct data entry such as title length and required fields.
 
 The application follows a layered architecture:
-
 - Controller: Handles HTTP requests
 - Service: Contains business logic
 - Model: Represents task data
@@ -17,206 +14,172 @@ The application follows a layered architecture:
 ## How to Run the Application
 
 ### Option 1: Using an IDE
-
 1. Open the project in IntelliJ IDEA or VS Code
 2. Locate `CampusTaskboardApplication.java`
-3. Right-click and click **Run**
-4. The server will start at:
-   http://localhost:8080
+3. Right-click and click Run
+4. Open:
+http://localhost:8080
 
 ---
 
 ### Option 2: Using Terminal
-
 1. Open a terminal in the project folder
 2. Run:
 
-```bash
 ./mvnw spring-boot:run
 
-3.Open in browser or Postman:
+3. Open in browser or Postman:
 http://localhost:8080/api/tasks
 
-Headers used:
-Content-Type: application/json
+---
 
-Screenshots of successful requests and responses are included in the project submission.
+## API Endpoints
 
-GET all tasks
-
+### Get all tasks
 GET /api/tasks
-Returns a list of all tasks
 
-GET task by ID
-
+### Get task by ID
 GET /api/tasks/{id}
-Returns a single task by ID
 
-POST create task
-
+### Create task
 POST /api/tasks
 
 Example JSON:
-
 {
   "title": "Complete Homework 5",
   "description": "Finish Spring Boot API assignment",
   "completed": false,
   "priority": "HIGH"
 }
-PUT update task
 
+---
+
+### Update task
 PUT /api/tasks/{id}
 
+Example JSON:
 {
   "title": "Updated Task",
   "description": "Updated description",
   "completed": true,
   "priority": "HIGH"
 }
-DELETE task
 
+---
+
+### Delete task
 DELETE /api/tasks/{id}
 
-Validation
+---
 
-The API validates input using Spring Validation:
+## Validation
 
-Title must be between 3 and 100 characters
-Title cannot be empty
-Description cannot exceed 500 characters
+- Title must be between 3 and 100 characters
+- Title cannot be empty
+- Description cannot exceed 500 characters
 
-If invalid data is submitted, the API returns a 400 Bad Request with error messages.
+If invalid data is sent, API returns:
+400 Bad Request
 
-Database Persistence
+---
 
-This project has been extended to use Spring Data JPA and an H2 in-memory database. Tasks are now stored in a database instead of an in-memory list.
+## Database (H2)
 
-New Features Added
-Database persistence using JPA
-H2 database integration
-Repository layer for data access
-Search functionality
-Pagination and sorting
-Filtering by completion and priority
-Database Configuration
+This project uses Spring Data JPA with an H2 in-memory database.
 
-The application uses the H2 in-memory database.
-
-Access H2 Console
-
+### H2 Console
 http://localhost:8080/h2-console
 
-Connection Settings
-JDBC URL: jdbc:h2:mem:taskboarddb
-Username: sa
-Password: (leave empty)
-JPA & Repository
-@Entity is used to map the Task class to the database
-JpaRepository handles CRUD operations automatically
-Custom query methods allow filtering and searching
+### Settings
+- JDBC URL: jdbc:h2:mem:taskboarddb
+- Username: sa
+- Password: (empty)
 
-Example:
+---
 
-List<Task> findByCompletedTrue();
-List<Task> findByPriority(Task.Priority priority);
-New API Endpoints (Homework 6)
-Get completed tasks
+## New Features Added
 
-GET /api/tasks/completed
+- Database persistence using JPA
+- H2 database integration
+- Repository layer
+- Search functionality
+- Pagination and sorting
+- Filtering tasks
 
-Get incomplete tasks
+---
 
-GET /api/tasks/incomplete
+## New API Endpoints
 
-Get tasks by priority
+GET /api/tasks/completed  
+GET /api/tasks/incomplete  
+GET /api/tasks/priority/HIGH  
+GET /api/tasks/search?keyword=homework  
+GET /api/tasks/paginated?page=0&size=5&sortBy=title  
 
-GET /api/tasks/priority/HIGH
+---
 
-Search tasks
+## Exception Handling
 
-GET /api/tasks/search?keyword=homework
-
-Pagination & Sorting
-
-GET /api/tasks/paginated?page=0&size=5&sortBy=title
-
-Database Testing
-Tasks created via POST are saved in the database
-Verified using the H2 Console:
-
-SELECT * FROM tasks;
-
-Features and Exception Handling
-
-This update adds more real-world backend features to improve API structure, error handling, and maintainability.
-
-Features Added
-Global exception handling
-Custom exceptions
-DTOs (Data Transfer Objects)
-Soft delete functionality
-Request/response logging
-Structured error responses
-API monitoring with Actuator
-Exception Handling
-
-Implemented centralized error handling using:
+Custom exception handling is implemented using:
 
 @RestControllerAdvice
-Custom Exceptions
-TaskNotFoundException – when a task does not exist
-InvalidTaskDataException – for invalid input
-Error Response Format
+
+### Custom Exceptions
+- TaskNotFoundException
+- InvalidTaskDataException
+
+---
+
+## Error Response Example
+
 {
   "timestamp": "...",
   "status": 404,
   "error": "Not Found",
-  "message": "Task with ID 1 not found",
+  "message": "Task not found",
   "path": "/api/tasks/1"
 }
-DTOs (Data Transfer Objects)
-TaskRequest
-Used for incoming data
-Includes validation
-TaskResponse
-Used for outgoing responses
-Hides internal fields like deleted
-Soft Delete
 
-Instead of permanently deleting:
+---
 
-Tasks are marked as deleted = true
-Prevents data loss
-Allows restoring tasks later
-Logging
+## DTOs
 
-A custom logging filter logs every request:
+- TaskRequest: Used for incoming data
+- TaskResponse: Used for outgoing data
 
+---
+
+## Soft Delete
+
+Instead of deleting permanently:
+- Tasks are marked as deleted = true
+- Data can be restored later
+
+---
+
+## Logging
+
+Each request is logged:
 GET /api/tasks - Status: 200 - Duration: 12ms
 
-Actuator (Monitoring)
+---
 
-Spring Boot Actuator is used for monitoring.
+## Actuator
 
-Health Check
-
+Health Check:
 http://localhost:8080/actuator/health
 
 Response:
-
 {
   "status": "UP"
 }
 
 ---
-## Demo Video
 
-### Video Link (Data Features)
-[Watch the demo](https://www.youtube.com/watch?v=mo7y3R6u-RQ)
+## Demo Videos
 
-### Video Link (Advanced Features & Exception Handling)
-[Watch the demo](https://youtu.be/6tCTppEGuNE)
+Data Features:
+https://www.youtube.com/watch?v=mo7y3R6u-RQ
 
-### Watch the demo (link coming soon)
----
+Advanced Features:
+https://youtu.be/6tCTppEGuNE
