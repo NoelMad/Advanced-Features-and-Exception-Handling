@@ -26,49 +26,49 @@ http://localhost:8080
 1. Open a terminal in the project folder
 2. Run:
 
-   ./mvnw spring-boot:run
+./mvnw spring-boot:run
 
 3. Open in browser or Postman:
-   http://localhost:8080/api/tasks
+http://localhost:8080/api/tasks
 
 ---
 
 ## API Endpoints
 
 ### Get all tasks
-   GET /api/tasks
+GET /api/tasks
 
 ### Get task by ID
-   GET /api/tasks/{id}
+GET /api/tasks/{id}
 
-### Create tas
-   POST /api/tasks
+### Create task
+POST /api/tasks
 
 Example JSON:
-   {
-   "title": "Complete Homework 5",
-   "description": "Finish Spring Boot API assignment",
-   "completed": false,
-   "priority": "HIGH"
-   }
+{
+  "title": "Complete Homework 5",
+  "description": "Finish Spring Boot API assignment",
+  "completed": false,
+  "priority": "HIGH"
+}
 
 ---
 
 ### Update task
-   PUT /api/tasks/{id}
+PUT /api/tasks/{id}
 
 Example JSON:
-   {
-   "title": "Updated Task",
-   "description": "Updated description",
-   "completed": true,
-   "priority": "HIGH"
-   }
+{
+  "title": "Updated Task",
+  "description": "Updated description",
+  "completed": true,
+  "priority": "HIGH"
+}
 
 ---
 
 ### Delete task
-   DELETE /api/tasks/{id}
+DELETE /api/tasks/{id}
 
 ---
 
@@ -78,7 +78,7 @@ Example JSON:
 - Title cannot be empty
 - Description cannot exceed 500 characters
 
-If invalid data is sent, API returns:
+If invalid data is sent, the API returns:
 400 Bad Request
 
 ---
@@ -88,7 +88,7 @@ If invalid data is sent, API returns:
 This project uses Spring Data JPA with an H2 in-memory database.
 
 ### H2 Console
-   http://localhost:8080/h2-console
+http://localhost:8080/h2-console
 
 ### Settings
 - JDBC URL: jdbc:h2:mem:taskboarddb
@@ -170,9 +170,9 @@ Health Check:
 http://localhost:8080/actuator/health
 
 Response:
-   {
-   "status": "UP"
-   }
+{
+  "status": "UP"
+}
 
 ---
 
