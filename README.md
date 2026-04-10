@@ -1,3 +1,5 @@
+---
+
 # Creating-My-First-Spring-Boot-API-with-Validation & Adding Database Persistence with Spring Data JPA & Advanced Features and Exception Handling
 
 ## Project Description
@@ -31,9 +33,10 @@ The application follows a layered architecture:
 1. Open a terminal in the project folder
 2. Run:
 
-   ```
-   ./mvnw spring-boot:run
-   ```
+```
+./mvnw spring-boot:run
+```
+
 3. Open in browser or Postman:
    [http://localhost:8080/api/tasks](http://localhost:8080/api/tasks)
 
@@ -72,7 +75,6 @@ Returns a single task by ID
 ### POST create task
 
 POST /api/tasks
-Creates a new task
 
 Example JSON:
 
@@ -90,9 +92,6 @@ Example JSON:
 ### PUT update task
 
 PUT /api/tasks/{id}
-Updates an existing task
-
-Example JSON:
 
 ```json
 {
@@ -108,7 +107,6 @@ Example JSON:
 ### DELETE task
 
 DELETE /api/tasks/{id}
-Deletes a task
 
 ---
 
@@ -130,7 +128,7 @@ If invalid data is submitted, the API returns a **400 Bad Request** with error m
 
 ---
 
-## 🚀 Database Persistence
+# 🚀 Database Persistence
 
 This project has been extended to use **Spring Data JPA** and an **H2 in-memory database**. Tasks are now stored in a database instead of an in-memory list.
 
@@ -190,13 +188,9 @@ GET /api/tasks/incomplete
 
 GET /api/tasks/priority/HIGH
 
----
-
 ### Search tasks
 
 GET /api/tasks/search?keyword=homework
-
----
 
 ### Pagination & Sorting
 
@@ -214,6 +208,135 @@ SELECT * FROM tasks;
 ```
 
 ---
+
 ## Video Link
 
 [Watch the demo](https://youtu.be/6tCTppEGuNE)
+
+---
+
+# Features and Exception Handling
+
+This update adds more **real-world backend features** to improve API structure, error handling, and maintainability.
+
+---
+
+## Features Added
+
+* Global exception handling
+* Custom exceptions
+* DTOs (Data Transfer Objects)
+* Soft delete functionality
+* Request/response logging
+* Structured error responses
+* API monitoring with Actuator
+
+---
+
+## Exception Handling
+
+Implemented centralized error handling using:
+
+```java
+@RestControllerAdvice
+```
+
+### Custom Exceptions
+
+* `TaskNotFoundException` – when a task does not exist
+* `InvalidTaskDataException` – for invalid input
+
+---
+
+## Error Response Format
+
+All errors now return a consistent structure:
+
+```json
+{
+  "timestamp": "...",
+  "status": 404,
+  "error": "Not Found",
+  "message": "Task with ID 1 not found",
+  "path": "/api/tasks/1"
+}
+```
+
+---
+
+## DTOs (Data Transfer Objects)
+
+### TaskRequest
+
+* Used for incoming data
+* Includes validation
+
+### TaskResponse
+
+* Used for outgoing responses
+* Hides internal fields (like `deleted`)
+
+### Why DTOs?
+
+* Separation of concerns
+* Security (hide internal fields)
+* Cleaner API responses
+
+---
+
+## Soft Delete
+
+Instead of permanently deleting:
+
+* Tasks are marked as `deleted = true`
+* Prevents data loss
+* Allows restoring tasks later
+
+---
+
+## Logging
+
+A custom logging filter logs every request:
+
+Example:
+
+```
+GET /api/tasks - Status: 200 - Duration: 12ms
+```
+
+---
+
+## Actuator (Monitoring)
+
+Spring Boot Actuator is used for monitoring.
+
+### Health Check
+
+[http://localhost:8080/actuator/health](http://localhost:8080/actuator/health)
+
+Response:
+
+```json
+{
+  "status": "UP"
+}
+```
+
+---
+
+## What This Adds
+
+These features make the API more like a **production-level backend** by adding:
+
+* Better error handling
+* Cleaner architecture
+* Monitoring capabilities
+* Safer data handling
+
+---
+
+## Video Link
+
+[Watch the demo]()
+
+---
