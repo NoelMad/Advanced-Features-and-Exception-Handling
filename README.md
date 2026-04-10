@@ -122,12 +122,6 @@ If invalid data is submitted, the API returns a **400 Bad Request** with error m
 
 ---
 
-## Video Link
-
-[Watch the demo](https://www.youtube.com/watch?v=mo7y3R6u-RQ)
-
----
-
 # 🚀 Database Persistence
 
 This project has been extended to use **Spring Data JPA** and an **H2 in-memory database**. Tasks are now stored in a database instead of an in-memory list.
@@ -206,13 +200,6 @@ GET /api/tasks/paginated?page=0&size=5&sortBy=title
 ```sql
 SELECT * FROM tasks;
 ```
-
----
-
-## Video Link
-
-[Watch the demo](https://youtu.be/6tCTppEGuNE)
-
 ---
 
 # Features and Exception Handling
@@ -334,9 +321,13 @@ These features make the API more like a **production-level backend** by adding:
 * Safer data handling
 
 ---
+## Demo Video
 
-## Video Link
+### Video Link (Data Features)
+[Watch the demo](https://www.youtube.com/watch?v=mo7y3R6u-RQ)
 
-Watch the demo (link coming soon)
+### Video Link (Advanced Features & Exception Handling)
+[Watch the demo](https://youtu.be/6tCTppEGuNE)
 
+### Watch the demo (link coming soon)
 ---
