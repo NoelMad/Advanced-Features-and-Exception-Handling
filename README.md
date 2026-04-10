@@ -1,6 +1,6 @@
 ---
 
-# Creating-My-First-Spring-Boot-API-with-Validation & Adding Database Persistence with Spring Data JPA & Advanced Features and Exception Handling
+# Creating-My-First-Spring-Boot-API-with-Validation and Adding Database Persistence with Spring Data JPA and Advanced Features and Exception Handling
 
 ## Project Description
 
