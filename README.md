@@ -33,7 +33,9 @@ The application follows a layered architecture:
 
 ```bash
 ./mvnw spring-boot:run
+
 3.Open in browser or Postman:
+http://localhost:8080/api/tasks
 
 Headers used:
 Content-Type: application/json
