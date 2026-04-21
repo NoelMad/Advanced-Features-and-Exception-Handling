@@ -13,6 +13,54 @@ The application follows a layered architecture:
 - Model: Represents task data
 
 ---
+## Tools Used
+
+### Backend Development
+- Java 17 – Core programming language
+- Spring Boot 3.x – Backend framework for building REST APIs
+- Spring Web – Handles HTTP requests and REST endpoints
+- Spring Data JPA – Database operations and ORM mapping
+- Spring Validation – Input validation (@NotBlank, @Size, etc.)
+- Spring Security – API security configuration (if included in project)
+- Spring Boot Actuator – Health checks and application monitoring
+
+### Database
+- H2 Database (In-Memory) – Development and testing database
+- JPA / Hibernate – ORM mapping between Java objects and database tables
+- SQL (H2 Console) – Used to query and inspect stored data
+
+### Architecture & Design
+- DTO Pattern – Separates API request/response models from database entities
+- Global Exception Handling – Centralized error handling using @RestControllerAdvice
+- Custom Exceptions – Handles application-specific errors (TaskNotFoundException, etc.)
+- Soft Delete – Marks records as deleted instead of permanently removing them
+- Layered Architecture – Controller → Service → Repository structure
+
+### Development Tools
+- Maven – Dependency management and build tool
+- Lombok – Reduces boilerplate code (getters, setters, constructors)
+- VS Code – Development environments
+- Git & GitHub – Version control and project hosting
+
+### API Testing & Documentation
+- Postman – Testing REST API endpoints (GET, POST, PUT, DELETE)
+- Swagger / OpenAPI – API documentation and endpoint testing in browser
+
+### Logging & Monitoring
+- SLF4J Logging – Request/response logging using Spring filters
+- Spring Boot Actuator – Health checks, metrics, and application monitoring
+
+### Key Concepts
+- REST API architecture
+- MVC (Model–View–Controller) pattern
+- Dependency Injection (Spring IoC)
+- Exception handling with @ExceptionHandler
+- DTO design pattern
+- Soft delete strategy
+- Request/response lifecycle
+- CRUD operations
+- Pagination and sorting
+- Clean code separation (Controller/Service/Repository/DTO)
 
 ## How to Run the Application
 
